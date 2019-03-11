@@ -1,0 +1,8 @@
+{
+    "name": "jamespot-dev-proxy",
+    "version": "0.0.1",
+    "dependencies": {
+        "express": "^4.16.4",
+        "http-proxy-middleware": "^0.19.1"
+    }
+}
