@@ -1,17 +1,30 @@
-var express = require('express')
+
+
+var express = require('express'),
+    fs = require('fs'),
+    https = require('https')
+
 var proxy = require('http-proxy-middleware')
 
 var app = express()
 
+https.createServer({
+    key: fs.readFileSync('js.teamkline.kline.app.key'),
+    cert: fs.readFileSync('js.teamkline.kline.app.crt')
+  }, app).listen(3443);
+   
 
-var socketProxy = proxy('ws://jpro1-macpagnol.jamespot.pro/socket.io', { changeOrigin: true })
+var domain = "teamkline.kline.app";
+var protocol = 'https';
+
+var socketProxy = proxy('ws://'+domain+'/socket.io', { changeOrigin: true })
 app.use('/socket.io', socketProxy)
 
-app.use('/reactTest', proxy({ target: 'http://jpro1-macpagnol.jamespot.pro', changeOrigin: true }))
-app.use('/user-api', proxy({ target: 'http://jpro1-macpagnol.jamespot.pro', changeOrigin: true }))
+app.use('/reactTest', proxy({ target: protocol+'://'+domain, changeOrigin: true }))
+app.use('/user-api', proxy({ target: protocol+'://'+domain, changeOrigin: true }))
+app.use('/image-cache', proxy({ target: protocol+'://'+domain, changeOrigin: true }))
 
 app.use('/', proxy({ target: 'http://localhost:3000', changeOrigin: true }))
-
 
 
 var server = app.listen(3333);
