@@ -14,18 +14,31 @@ https.createServer({
   }, app).listen(3443);
    
 
-var domain = "teamkline.kline.app";
+var domain = "k2018-1.jamespot.pro";
 var protocol = 'https';
 
 var socketProxy = proxy('ws://'+domain+'/socket.io', { changeOrigin: true })
 app.use('/socket.io', socketProxy)
 
-app.use('/reactTest', proxy({ target: protocol+'://'+domain, changeOrigin: true }))
-app.use('/user-api', proxy({ target: protocol+'://'+domain, changeOrigin: true }))
-app.use('/image-cache', proxy({ target: protocol+'://'+domain, changeOrigin: true }))
 
+var proxyOptions = { 
+  target: protocol+'://'+domain, 
+  cookieDomainRewrite: ".teamkline.kline.app",
+  changeOrigin: true,
+  headers: {Referer: 'https://'+domain+'/'}
+}
+
+
+app.use('/reactTest', proxy(proxyOptions))
+app.use('/user-api', proxy(proxyOptions))
+app.use('/image-cache', proxy(proxyOptions))
+app.use('/', proxy(proxyOptions))
+
+
+/*
 app.use('/', proxy({ target: 'http://localhost:3000', changeOrigin: true }))
-
+app.use('/', proxy({ target: 'http://localhost:3000', changeOrigin: true }))
+*/
 
 var server = app.listen(3333);
 
