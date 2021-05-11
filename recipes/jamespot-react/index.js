@@ -16,7 +16,12 @@ var protocol = 'https';
 
 //////////////////////////////
 /// TYPE YOUR DOMAIN HERE
-var domain = "goals-plans.jamespot.pro";
+// var domain = "goals-plans.jamespot.pro";
+// var domain = "test-1551092546.fr.jamespot.pro";
+// var domain = "gurvan-dev.com.jamespot.pro";
+// var domain = "test-selenium.jamespot.pro";
+// var domain = "jpro-gitbranch-feature-advanced-search.jamespot.pro";
+var domain = "gurvan-dev-11mai21.com.jamespot.pro";
 //////////////////////////////
 
 
@@ -49,9 +54,9 @@ app.use('/react-boilerplate', proxy({
 app.use('/react-appstudio', proxy({
   // logLevel: 'debug',
   target: 'http://localhost:3001', changeOrigin: true,
-  // pathRewrite: {
-  //   '^/react-appstudio': '/'
-  // },
+  pathRewrite: {
+    '^/react-appstudio': '/'
+  },
 }))
 //////////////////////////////
 
