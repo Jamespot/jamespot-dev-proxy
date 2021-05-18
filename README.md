@@ -21,3 +21,11 @@ Then, you should access your proxy using : https://jamespot.proxy:3443/
 
 In order to suppress Certificates Warning, 
 the Certificate Store must contain the XCA_Jamespot.crt certificate as a Certificate Authority.
+
+
+## run proxy
+
+```
+node index.js
+node recipes/jamespot-react/index.js
+```
