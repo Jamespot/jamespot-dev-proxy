@@ -45,7 +45,7 @@ app.use('/react-extension', proxy({
 
 app.use('/react-boilerplate', proxy({
   // logLevel: 'debug',
-  target: 'http://localhost:3000', changeOrigin: true,
+  target: 'http://localhost:3060', changeOrigin: true,
   pathRewrite: {
     '^/react-boilerplate': '/'
   },
